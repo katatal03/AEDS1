@@ -1,0 +1,45 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<stdbool.h>
+
+void apresentacao();
+float lerLado();
+float resLado(float lado);
+void escreva(float res);
+int main()
+{
+  apresentacao();
+
+  float lado=lerLado();
+  float res= resLado(lado);
+
+  escreva(res);
+}
+
+
+void apresentacao()
+{
+    printf("\n perimetro de um quarado \n");
+    return;
+}
+
+float lerLado()
+{
+  float x;
+  printf("\n quantos centimetros tem o lado do quadrado: ");
+  scanf("%f",&x);
+
+  return x;
+
+}
+
+float resLado(float lado)
+{
+  float resultado= lado*4;
+  return resultado;
+}
+
+void escreva(float res)
+{
+    printf("\n o perimetro do quadrado e de %f",res);
+}
