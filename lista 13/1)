@@ -1,0 +1,53 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<stdbool.h>
+
+void apresentacao();
+float valorLido();
+float somaValor(float a, float b);
+void digite(float soma);
+int main()
+{
+    apresentacao();
+
+    float a=valorLido();
+    float b=valorLido();
+    float soma=somaValor(a,b);
+
+    digite(soma);
+
+    return 0;
+
+}
+
+
+
+ void apresentacao()
+ {
+     printf("\n soma de dois valores\n");
+     return;
+ }
+
+ float valorLido()
+ {
+     float valor;
+     printf("\n digite o valor: ");
+     scanf("%f",&valor);
+
+     return valor;
+ }
+
+
+ float somaValor(float a, float b)
+ {
+     float soma= a+b;
+
+     return soma;
+
+ }
+
+void digite(float soma)
+ {
+     printf("\n o resultado e %f",soma);
+     return;
+ }
