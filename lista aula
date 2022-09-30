@@ -1,0 +1,60 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<stdbool.h>
+
+float leiaValor();
+void ordenar(float*a, float*b, float*c);
+void trocar(float*x, float*y);
+void escrevaValores(float a, float b, float c);
+int main()
+{
+    float a= leiaValor();
+    float b= leiaValor();
+    float c= leiaValor();
+
+
+    ordenar(&a,&b,&c);
+    escrevaValores(a,b,c);
+
+    return 0;
+}
+
+float leiaValor()
+{
+    float x;
+    printf("\n digite o valor: ");
+    scanf("%f",&x);
+    return x;
+}
+
+void ordenar(float*a, float*b, float*c)
+{
+   if (*a>*b)
+        trocar(a,b);
+        if (*b>*c)
+        trocar (b,c);
+    if (*a>*b)
+        trocar(a,b);
+        return;
+}
+
+
+
+
+void trocar(float*x, float*y)
+{
+    float aux;
+    aux=*x;
+    *x=*y;
+    *y=aux;
+    return;
+}
+
+
+
+void escrevaValores(float a, float b, float c)
+{
+   printf("\n %f,%f,%f", a,b,c);
+   return;
+
+}
