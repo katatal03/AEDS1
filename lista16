@@ -1,0 +1,54 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<stdbool.h>
+
+void apresentacao();
+int leiaValor();
+int fatorial(int x);
+void resultado(int fat);
+int main()
+{
+  apresentacao();
+  int x;
+  int fat;
+  x=leiaValor();
+  fat=fatorial(x);
+  resultado(fat);
+  return 0;
+}
+
+void apresentacao()
+{
+    printf ("fatoracao de numero inteiro");
+    return;
+}
+
+int leiaValor()
+{
+    int x;
+    printf("\n qual valor voce deseja fatorar:    ");
+    scanf("%i",&x);
+    return x;
+
+}
+
+int fatorial(int x)
+{
+   int fat;
+
+   if(x<0)
+   {
+       fat=0;
+   }else if(x==0)
+   {
+       fat=1;
+   } else fat=x*fatorial(x-1);
+   return fat;
+
+}
+
+void resultado(int fat)
+{
+    printf("o resultado e %i",fat);
+    return;
+}
