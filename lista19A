@@ -1,0 +1,32 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<stdbool.h>
+#include<ctype.h>
+
+int main()
+{
+    int c=0;
+    int v[5];
+    int soma=0;
+
+    for(int i=0;i<5;i++)
+    {
+        printf("\n digite a %i idade", i+1);
+        scanf(" %i",&v[i]);
+        soma=v[i]+soma;
+    }
+    int media= soma/5;
+    printf("\n a media e igual a %i",media);
+
+      for(int j=0;j<5;j++)
+    {
+        if(v[j]<media)
+        {
+           c++;
+        }
+
+    }
+    printf("\n pessoas com idade menor que a media e %i",c);
+
+    return 0;
+}
