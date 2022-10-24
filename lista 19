@@ -1,0 +1,26 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<stdbool.h>
+
+
+void apresentacao();
+int main()
+{
+
+   apresentacao();
+   int v[]={31,28,31,30,31,30,31,31,30,31,30,31};
+   int mes;
+   printf("\n mes ?[1...12]");
+   scanf("%i",&mes);
+
+   printf("\n o mes %i tem %i dias", mes,v[mes-1]);
+   return 0;
+
+
+
+}
+
+void apresentacao()
+{
+    printf("\n total de dias dos meses\n");
+}
