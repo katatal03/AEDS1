@@ -1,0 +1,94 @@
+# AEDS1
+#include<stdio.h>
+#include<stdlib.h>
+#include<stdbool.h>
+
+
+typedef struct {
+int dia;
+int mes;
+int ano;
+}data;
+
+typedef struct {
+char nome[50];
+data nascimento;
+}aluno;
+
+int menu();
+void leiaAluno(aluno*A);
+void escreva( aluno*A);
+
+
+int main ()
+{
+aluno* A[100];
+int opcao;
+int c=0
+
+do{
+ opcao=menu();
+switch(opcao)
+{
+    case 0: puts("\n obrigado"); break;
+    case 1:leiaAluno(x[c]); c++; break;
+    case 2: listaAluno(x,c);
+}
+
+}while(opcao!=0);
+
+
+
+}
+
+int menu()
+{
+    int op;
+    bool erro;
+
+    printf("\n menu ");
+    printf("\n 1- sair");
+    printf("\n 2- cadastrar ");
+    printf("\n 3- lista aluno");
+    do{
+        printf("\n sua opcao");
+        scanf("%i",&op);
+        erro=op<o || op>2
+        if (erro)
+            printf("\n\a erro");
+    } while(erro);
+    return op;
+}
+
+void leiaAluno(aluno*A)
+{
+A=(aluno*)malloc(sizeof(aluno));
+printf("\n nome: ");
+fflush(stdin);
+gets(A->nome);
+
+puts("\n nascimento ");
+printf("\n data [dd/mm/aaaa]");
+scanf("%i/%i/%i",&A->nascimento.dia ,&A->nascimento.mes , &A->nascimento.ano );
+
+return ;
+}
+
+
+void listaAluno(aluno*A[],int c)
+{
+    for(int i=0;i<c;i++)
+    {
+      escreva(A[i])
+    }
+}
+
+
+
+void escreva( aluno*A)
+{
+    printf("\n nome: %s ",A->nome);
+printf("\n nascimento %i/%i/%i",A->nascimento.dia ,A->nascimento.mes , A->nascimento.ano );
+
+return;
+}
