@@ -1,0 +1,126 @@
+#include <iostream>
+
+using namespace std;
+
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<stdbool.h>
+
+//Tipo Data
+typedef struct
+{
+    int dia;
+    int mes;
+    int ano;
+} Data;
+
+// Lê data pelo teclado
+void leiaData(Data* data)
+{
+    printf(" [dd/mm/aaaa]: ");
+    scanf("%i/%i/%i", &data->dia, &data->mes, &data->ano);
+}
+
+// Escreve data na tela
+void escrevaData(Data* data)
+{
+    printf("%i/%i/%i", data->dia, data->mes, data->ano);
+}
+// Tipo Aluno
+typedef struct
+{
+    char nome[50];
+    Data nascimento;
+} Aluno;
+
+
+void leiaAluno(Aluno* aluno)
+{
+    printf("\nNome: ");
+    fflush(stdin);
+    gets(aluno->nome);
+    printf("Nascimento ");
+    leiaData(&aluno->nascimento);
+}
+
+// Escreve Aluno na tela
+void escrevaAluno(Aluno* aluno)
+{
+    printf("\nNome: %s", aluno->nome);
+    printf("\nNascimento: ");
+    escrevaData(&aluno->nascimento);
+    printf("\n");
+}
+
+// Lista todos os alunos
+void listaAlunos(Aluno* aluno[], int c)
+{
+      for(int i=0; i<c; i++)
+      {
+               escrevaAluno(aluno[i]);
+      }
+      printf("\n");
+}
+// Menu de opções
+int menu()
+{
+    int opcao;
+    bool ERRO;
+    puts("\nMenu de opcoes");
+    puts("\t0 - Sair");
+    puts("\t1 - Cadastrar aluno");
+    puts("\t2 - Listar alunos");
+    puts("\t3 – Aniversariantes do mês");
+    do{
+        printf("\n\tSua opcao: ");
+        scanf("%i", &opcao);
+        ERRO = (opcao<0) || (opcao>3);
+        if(ERRO) puts("\n\aOpcao nao prevista");
+    }while(ERRO);
+    return opcao;
+}
+ void listaAniversariante (Aluno* aluno[], int c)
+ {
+     int mes;
+     printf("\n qual mes que deseja:");
+     scanf(" %i",&mes);
+
+
+      for(int i=0; i<c; i++)
+      {
+          if (mes==aluno[i]->nascimento.mes)
+               escrevaAluno(aluno[i]);
+      }
+      printf("\n");
+ }
+
+
+ const int MAX = 100;
+
+// Função Principal
+int main()
+{
+    Aluno* aluno[MAX];
+    int opcao;
+    int c=0;
+    do
+    {
+        opcao = menu();
+        switch(opcao)
+        {
+            case 0 : puts("\nObrigado!\n");
+                          break;
+            case 1 : aluno[c]=(Aluno*)malloc(sizeof(Aluno));
+                          leiaAluno(aluno[c]);
+                          c++;
+                          break;
+            case 2 : listaAlunos(aluno, c);
+                          break;
+            case 3 : listaAniversariante(aluno, c);
+                           break;
+
+        }
+    }while(opcao != 0);
+    return 0;
+}
