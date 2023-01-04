@@ -1,0 +1,26 @@
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+class ClasseA{
+public:
+    int x;
+    int y;
+
+    ClasseA(int a,int b)
+    {
+        x=a;
+        y=b;
+    }
+
+};
+
+
+int main()
+{
+    ClasseA classeA(10,50);
+
+    cout<<classeA.x + classeA.y <<endl;
+
+}

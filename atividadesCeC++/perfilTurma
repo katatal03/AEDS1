@@ -1,0 +1,44 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<stdbool.h>
+
+#include<ctype.h>
+
+
+
+
+int main()
+{
+    printf("\n peril da turma");
+    int n;
+    printf("\n quantos alunos tem na classe: ");
+    scanf("%i",&n);
+    int nota;
+    int maior=0;
+    int soma=0;
+    int i=1;
+
+    while(i<=n)
+    {
+        do
+        {
+
+
+          printf("\n qual a nota do %i aluno:",i);
+        scanf("%i",&nota);
+        if(nota>maior)
+        {
+            maior=nota;
+        }
+        soma=nota+soma;
+        }while(nota<0 || nota>100);
+        i++;
+
+
+    }
+
+    int media=soma/n;
+    printf("\n a maior nota foi %i",maior);
+    printf("\n a media foi de %i", media);
+
+}

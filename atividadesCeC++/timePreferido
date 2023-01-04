@@ -1,0 +1,64 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<stdbool.h>
+
+#include<ctype.h>
+
+
+int main()
+{
+   printf("\n time preferido ");
+   int n;
+   do{
+     printf("\n quantos alunos tem na classe:");
+     scanf("%i",&n);
+
+   }while(n<0 || n>70);
+
+   char time;
+   bool erro;
+
+   int qntA=0;
+   int qntC=0;
+   int qntO=0;
+
+   for(int i=1;i<=n;i++)
+   {
+       do
+       {
+       printf("\n %i aluno torce para [A,C,O]:",i);
+       scanf(" %c",&time);
+       time=toupper(time);
+       erro= time!='A' && time!='C' && time!='O';
+       if (erro)
+       {
+           printf("n resposta invalida");
+       }
+       }while(erro);
+
+
+       if(time=='A')
+       {
+           qntA++;
+       }else if(time=='C')
+       {
+           qntC++;
+       }else if(time=='O')
+       {
+           qntO++;
+       }
+
+
+   }
+
+   int pa=n*qntA/100;
+   int pc=n*qntC/100;
+   int po=n*qntO/100;
+
+
+   printf("\n a porcentagem que torce pro cruzeiro e %i",pc);
+   printf("\n a porcentagem que torce pro atletico e %i",pa);
+   printf("\n a porcentagem que torce para outros e %i",po);
+
+
+}

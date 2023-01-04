@@ -1,0 +1,32 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<stdbool.h>
+
+#include<ctype.h>
+
+
+
+
+int main()
+{
+ int n;
+ int fat;
+ do
+ {
+     fat=1;
+
+     printf("\n qual numero deseja fatorar: ");
+     scanf("%i",&n);
+     if(n>0)
+     {
+         for(int i=1;i<=n;i++)
+         {
+             fat=fat*i;
+         }
+         printf("\n %i", fat);
+     }
+
+ }while(n>=0);
+
+ printf("saindo...");
+}

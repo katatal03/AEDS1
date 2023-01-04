@@ -1,0 +1,88 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<stdbool.h>
+
+#include<ctype.h>
+
+int menu()
+{
+    int x;
+    bool erro;
+    do
+    {
+      printf("\n0- sair");
+    printf("\n1- chapa 1");
+    printf("\n2- chapa 2");
+    printf("\n3-voto nulo");
+    printf("\n qual sua opcao: ");
+    scanf("%i",&x);
+    erro=x<0 || x>3;
+    if(erro)
+    {
+        printf("\n valor invalido");
+    }
+    }while(erro);
+
+    return x;
+}
+
+
+int main()
+{
+ printf("\n votos para o da");
+ int alunos;
+ printf("\n quantos alunos tem :");
+ scanf("%i",&alunos);
+ int qntc1=0;
+ int qntc2=0;
+ int qntn=0;
+ int i=0;
+ while(i<alunos)
+ {
+
+printf("\n aluno %i",++i);
+ int opcao=menu();
+
+ switch(opcao)
+ {
+     case 0: printf("\n obrigado");
+                 break;
+     case 1:  qntc1++;
+                 break;
+     case 2: qntc2++;
+                 break;
+     case 3: qntn++;
+                 break;
+ }
+// i++;
+ }
+
+ printf("\n chapa 1 teve %i votos",qntc1);
+ printf("\n chapa 2 teve %i votos",qntc2);
+ printf("\n nulo teve %i votos",qntn);
+
+
+ int p=1;
+ if(qntc1>qntc2)
+ {
+     printf("\n vencedor foi chapa 1");
+     p=qntc1/(float)alunos*100;
+     printf("\n com a porcentagem de %i",p);
+ }else
+ if(qntc2>qntc1)
+ {
+    printf("\n  vencedor foi chapa 2");
+    p=qntc2/(float)alunos*100;
+    printf("\n com a porcentagem de %i",p);
+ }
+
+ if(qntc1==qntc2)
+ {
+     printf("\n empate");
+ }
+
+
+}
+
+
+

@@ -1,0 +1,36 @@
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+class ClasseA{
+public:
+   void fala();
+   int seleciona();
+
+
+};
+
+void ClasseA::fala()
+{
+    cout<<"falando mais um pouco com voces"<<endl;
+}
+int ClasseA::seleciona()
+{
+    int x;
+    cout<<"qual numero deseja:";
+    cin>>x;
+    return x;
+}
+
+
+int main(){
+
+    ClasseA obj;
+obj.fala();
+
+
+cout<<obj.seleciona();
+return 0;
+
+}

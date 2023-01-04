@@ -1,0 +1,32 @@
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+class ClasseA{
+protected:
+    int x;
+
+};
+class ClasseB:ClasseA{
+public:
+
+    void setx(int n)
+    {
+        x=n;
+    }
+
+    int getx()
+    {
+        return x;
+    }
+
+};
+
+
+int main()
+{
+  ClasseB obj;
+  obj.setx(10);
+  cout<< "o valor e:"<<" "<< obj.getx()<<endl;
+}

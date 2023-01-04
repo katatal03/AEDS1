@@ -1,0 +1,48 @@
+#include <iostream>
+#include <cmath>
+#include <fstream>
+
+using namespace std;
+
+class Cachorro{
+
+private:
+
+    string nome;
+
+public:
+
+    static int q;
+
+    Cachorro()
+    {
+
+    }
+
+    Cachorro(string nome)
+    {
+        this-> nome=nome;
+
+    }
+
+   string getNome()
+    {
+        return nome;
+    }
+
+};
+
+
+
+int main()
+{
+  Cachorro*cachorro[2];
+
+  cachorro[0] = new Cachorro();
+  cachorro[1] = new Cachorro("auau");
+
+
+   cout << cachorro[0] -> getNome();
+   cout << cachorro[1] -> getNome();
+
+}

@@ -1,0 +1,518 @@
+#include <iostream>
+
+using namespace std;
+
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<stdbool.h>
+
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+// Tipo Data
+class Data
+{
+    private :
+       int dia;
+       int mes;
+       int ano;
+
+    public :
+
+
+        Data()
+        {
+
+        }
+        Data(int dia, int mes,int ano)
+        {
+           this->setDia(dia);
+           this->setMes(mes);
+           this->setAno(ano);
+        }
+
+       bool setDia( int dia )
+       {
+            bool sucesso=false;
+            if(dia >= 0 && dia <= 31)
+            {
+                  this->dia = dia;
+                  sucesso=true;
+            }
+            return sucesso;
+       }
+
+       bool setMes( int mes )
+       {
+            bool sucesso=false;
+            if(mes >= 0 && mes <= 12)
+            {
+                  this->mes = mes;
+                  sucesso=true;
+            }
+            return sucesso;
+       }
+       bool setAno( int ano )
+       {
+            bool sucesso=false;
+            if(ano >= -200000 && ano <= 200000)
+            {
+                  this->ano = ano;
+                  sucesso=true;
+            }
+            return sucesso;
+       }
+
+       void setData(int dia, int mes, int ano)
+       {
+
+           setDia(dia);
+            setMes(mes);
+            setAno(ano);
+           // cout<<dia<<endl;
+           // cout<<mes<<endl;
+            //cout<<ano<<endl;
+
+
+       }
+       int getDia()
+       {
+           return this->dia;
+       }
+       int getMes()
+       {
+           return this->mes;
+       }
+       int getAno()
+       {
+           return this->ano;
+       }
+       void leiaData()
+       {
+            int dia, mes, ano;
+             scanf("%i/%i/%i", &dia, &mes, &ano);
+
+
+             this->setData(dia,mes,ano);
+       }
+       void escrevaData()
+       {
+          printf("%i/%i/%i", dia, mes, ano);
+       }
+
+};
+// Tipo Aluno
+class Aluno
+{
+ private :
+    string nome;
+    Data nascimento;
+    static int quantidade;
+ public:
+     Aluno()
+     {
+      quantidade++;
+     }
+     Aluno(string nome)
+     {
+        this->setNome(nome);
+        quantidade++;
+     }
+     Aluno(string nome,int d, int mes,int ano)
+     {
+         this->setNome(nome);
+        this->setNascimento(d, mes,ano);
+        quantidade++;
+
+     }
+     ~Aluno()
+     {
+         quantidade--;
+     }
+
+     static int getQuantidade()
+     {
+         return quantidade;
+     }
+
+    void setNome(string nome)
+    {
+        this->nome = nome;
+
+    }
+
+    // bool setData(int dia, int mes, int ano)
+       //{
+          // return setDia(dia) && setMes(mes) && setAno(ano);
+      // }
+
+    void setNascimento(int dia, int mes, int ano)
+    {
+
+         Data* x= new Data(dia, mes, ano);
+          this -> nascimento = *x;
+    }
+    void setNascimento()
+    {
+        this->nascimento.leiaData();
+    }
+
+
+    string getNome()
+    {
+        return this->nome;
+    }
+
+    virtual void leiaAluno()=0;
+    //{
+        //string nome;
+       // printf("\nNome: ");
+       // cin >> nome;
+       // this->setNome(nome);
+       // printf("\nNascimento: ");
+        //nascimento.leiaData();
+    //}
+    virtual void escrevaAluno()=0;
+    /*{
+        cout << "\nNome: " << this->getQuantidade() <<"-  "<<this->getNome();
+        printf("\nNascimento: ");
+        nascimento.escrevaData();
+        quantidade++;
+    }
+*/
+ Data getNascimento()
+ {
+     return this-> nascimento;
+ }
+
+};
+
+    void listaAlunos(Aluno*alunos[], int c)
+{
+      for(int i=0; i<c; i++)
+      {
+             alunos[i]->escrevaAluno();
+      }
+      printf("\n");
+}
+void listaAniversariante (Aluno* alunos[], int c)
+ {
+     int Mes;
+     printf("\n qual mes que deseja:");
+     scanf(" %i",&Mes);
+
+
+      for(int i=0; i<c; i++)
+      {
+             if (Mes==alunos[i]->getNascimento().getMes())
+              alunos[i]->escrevaAluno();
+      }
+      printf("\n");
+ }
+
+ void deletaAluno(Aluno*alunos[], int c)
+ {
+     int x;
+    for(int i=0; i<c; i++)
+      {
+             alunos[i]->escrevaAluno();
+      }
+      printf("\n");
+      cout<<"qual aluno deseja deletar?";
+      cin>>x;
+      if (x>c)
+      {
+          cout<<"valor invalido";
+
+      }
+      else
+        {
+            delete alunos[x];
+        }
+ }
+
+
+class AlunoRegular: public Aluno {
+private:
+    //Aluno*aluno;
+     int matricula;
+    // static int quantidade;
+public:
+     AlunoRegular():Aluno()
+     {
+     }
+     AlunoRegular(string nome):Aluno( nome)
+     {
+
+     }
+     AlunoRegular(string nome,int d, int mes,int ano):Aluno(nome,d, mes, ano)
+     {
+
+
+     }
+     AlunoRegular(string nome,int d, int mes,int ano, int matricula):Aluno( nome, d,  mes, ano)
+     {
+
+        this->setMatricula(matricula);
+
+
+     }
+     ~AlunoRegular()
+     {
+
+     }
+     void setMatricula(int matricula)
+     {
+         this->matricula=matricula;
+     }
+     int getMatricula()
+     {
+         return matricula;
+     }
+
+void leiaAluno()
+    {
+        string nome;
+        printf("\nNome: ");
+        cin >> nome;
+        this->setNome(nome);
+        printf("\nNascimento: ");
+        this->setNascimento();
+       // cout<<getNascimento().getDia();
+        //cout<<getNascimento().getMes();
+       // cout<<getNascimento().getAno();
+
+        cout<<"\n matricula: ";
+        cin>>this->matricula;
+    }
+
+     void escrevaAluno()
+     {
+
+
+        cout << "\nNome: " <<this->getNome();
+        printf("\nNascimento: ");
+        getNascimento().escrevaData();
+        cout<<"\n matricula: "<<this->matricula;
+
+    }
+
+};
+
+  void listaAlunosR(AlunoRegular*alunos[], int c)
+{
+      for(int i=0; i<c; i++)
+      {
+             alunos[i]->escrevaAluno();
+      }
+      printf("\n");
+}
+
+class AlunoIntercambista: public Aluno {
+private:
+    //Aluno*aluno;
+     //static int quantidade;
+public:
+     AlunoIntercambista():Aluno()
+     {
+
+     }
+     AlunoIntercambista(string nome):Aluno(nome)
+     {
+
+     }
+     AlunoIntercambista(string nome,int d, int mes,int ano): Aluno(nome,d,mes,ano)
+     {
+
+
+     }
+
+     ~AlunoIntercambista()
+     {
+
+     }
+
+
+void leiaAluno()
+    {
+        string nome;
+        printf("\nNome: ");
+        cin >> nome;
+        this->setNome(nome);
+        printf("\nNascimento: ");
+       // getNascimento().leiaData();
+        this->setNascimento();
+    }
+    void escrevaAluno()
+     {
+
+
+        cout << "\nNome: " <<this->getNome();
+        printf("\nNascimento: ");
+        getNascimento().escrevaData();
+
+
+    }
+
+};
+
+ void listaAlunosI(AlunoIntercambista*alunos[], int c)
+{
+      for(int i=0; i<c; i++)
+      {
+             alunos[i]->escrevaAluno();
+      }
+      printf("\n");
+}
+
+int Aluno::quantidade=0;
+// Menu de opções
+int menu()
+{
+    int opcao;
+    bool ERRO;
+    puts("\nMenu de opcoes");
+    puts("\t0 - sair");
+    puts("\t1 - cadastrar aluno");
+    puts("\t2 - listar alunos");
+    puts("\t3 - aniversariantes do mes");
+    puts("\t4 - deletar aluno");
+    do{
+        printf("\n\tSua opcao: ");
+        scanf("%i", &opcao);
+        ERRO = (opcao<0) || (opcao>4);
+        if(ERRO) puts("\n\aOpcao nao prevista");
+    }while(ERRO);
+    return opcao;
+}
+int menu2()
+{
+    int opcao;
+    bool ERRO;
+    puts("\nMenu de opcoes");
+    puts("\t0 -  retornar ao menu anterior");
+    puts("\t1 - Listar apenas alunos regulares");
+    puts("\t2 - Listar apenas alunos intercambistas");
+    puts("\t3 - Listar todos os alunos ");
+
+    do{
+        printf("\n\tSua opcao: ");
+        scanf("%i", &opcao);
+        ERRO = (opcao<0) || (opcao>3);
+        if(ERRO) puts("\n\aOpcao nao prevista");
+    }while(ERRO);
+    return opcao;
+}
+
+
+
+ const int MAX = 100;
+
+// Função Principal
+int main()
+{
+    int c=0;
+    int r=0;
+    int i=0;
+
+Aluno* aluno[MAX];
+AlunoRegular* alunoRegular[MAX];
+AlunoIntercambista* alunoIntercambista[MAX];
+
+   // Aluno*aluno1=new Aluno();
+   // Aluno*aluno2=new Aluno("pedro");
+   // Aluno*alunos=new Aluno("eduardo",10,11,2003);
+   // Data*d1=new Data();
+    //Data*d2=new Data(11,10,2003);
+
+
+    int opcao;
+
+    do
+    {
+        opcao = menu();
+        switch(opcao)
+        {
+            case 0 : puts("\nObrigado!\n");
+                          break;
+            case 1 :{
+                int x;
+
+                 puts("\n qual voce deseja cadastrar [0=regular, 1=intercambista]");
+                scanf("%i",&x);
+                if(x==0)
+                {
+                    alunoRegular[r]=new AlunoRegular();
+                    alunoRegular[r]->leiaAluno();
+                    aluno[c]=alunoRegular[r];
+                    r++;
+                    c++;
+                }else
+                     if(x==1)
+                     {
+                         alunoIntercambista[i]= new AlunoIntercambista();
+                          alunoIntercambista[i]->leiaAluno();
+                           aluno[c]=alunoIntercambista[i];
+                           i++;
+                           c++;
+
+                     }
+
+
+
+
+                          break;
+            }
+            case 2 :
+                {
+
+int opcao2;
+    do
+    {
+    opcao2 = menu2();
+        switch(opcao2)
+        {
+            case 0 : puts("\nvoltando...!\n");
+
+                          break;
+            case 1 : listaAlunosR(alunoRegular, r);
+
+                          break;
+            case 2 :listaAlunosI(alunoIntercambista, i);
+
+                          break;
+            case 3 :listaAlunos(aluno, c);
+                          break;
+
+
+        }
+
+     }while(opcao2 != 0);
+
+
+
+                          break;
+
+                }
+            case 3 :listaAniversariante(aluno, c);
+
+                           break;
+            case 4 : deletaAluno(aluno , c);
+        }
+
+
+
+
+
+    }while(opcao != 0);
+
+
+
+
+
+
+    return 0;
+}

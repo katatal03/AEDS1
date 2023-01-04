@@ -1,0 +1,245 @@
+#include <iostream>
+
+using namespace std;
+
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<stdbool.h>
+
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+// Tipo Data
+class Data
+{
+    private :
+       int dia;
+       int mes;
+       int ano;
+
+    public :
+
+
+        Data()
+        {
+
+        }
+        Data(int dia, int mes,int ano)
+        {
+           this->setDia(dia);
+           this->setMes(mes);
+           this->setAno(ano);
+        }
+
+       bool setDia( int dia )
+       {
+            bool sucesso=false;
+            if(dia >= 0 && dia <= 31)
+            {
+                  this->dia = dia;
+                  sucesso=true;
+            }
+            return sucesso;
+       }
+
+       bool setMes( int mes )
+       {
+            bool sucesso=false;
+            if(mes >= 0 && mes <= 12)
+            {
+                  this->mes = mes;
+                  sucesso=true;
+            }
+            return sucesso;
+       }
+       bool setAno( int ano )
+       {
+            bool sucesso=false;
+            if(ano >= -200000 && ano <= 200000)
+            {
+                  this->ano = ano;
+                  sucesso=true;
+            }
+            return sucesso;
+       }
+
+       bool setData(int dia, int mes, int ano)
+       {
+           return setDia(dia) && setMes(mes) && setAno(ano);
+       }
+       int getDia()
+       {
+           return this->dia;
+       }
+       int getMes()
+       {
+           return this->mes;
+       }
+       int getAno()
+       {
+           return this->ano;
+       }
+       void leiaData()
+       {
+            int dia, mes, ano;
+             scanf("%i/%i/%i", &dia, &mes, &ano);
+             this->setData(dia,mes,ano);
+       }
+       void escrevaData()
+       {
+          printf("%i/%i/%i", getDia(), getMes(), getAno());
+       }
+
+};
+// Tipo Aluno
+class Aluno: public Data
+{
+ private :
+    string nome;
+    Data nascimento;
+ public:
+     Aluno()
+     {
+
+     }
+     Aluno(string nome,int d, int mes,int ano)
+     {
+         this->setNome(nome);
+        this->setData(d, mes,ano);
+
+     }
+
+    void setNome(string nome)
+    {
+        this->nome = nome;
+    }
+
+     bool setData(int dia, int mes, int ano)
+       {
+           return setDia(dia) && setMes(mes) && setAno(ano);
+       }
+
+    void setNascimento(int dia, int mes, int ano)
+    {
+        nascimento.setData(dia, mes, ano);
+    }
+    string getNome()
+    {
+        return this->nome;
+    }
+
+    void leiaAluno()
+    {
+        string nome;
+        printf("\nNome: ");
+        cin >> nome;
+        this->setNome(nome);
+        printf("\nNascimento: ");
+        nascimento.leiaData();
+    }
+    void escrevaAluno()
+    {
+        cout << "\nNome: " << this->getNome();
+        printf("\nNascimento: ");
+        nascimento.escrevaData();
+    }
+    void listaAlunos(Aluno*alunos[], int c)
+{
+      for(int i=0; i<c; i++)
+      {
+             alunos[i]->escrevaAluno();
+      }
+      printf("\n");
+}
+void listaAniversariante (Aluno* alunos[], int c)
+ {
+     int Mes;
+     printf("\n qual mes que deseja:");
+     scanf(" %i",&Mes);
+
+
+      for(int i=0; i<c; i++)
+      {
+             if (Mes==alunos[i]->nascimento.getMes())
+              alunos[i]->escrevaAluno();
+      }
+      printf("\n");
+ }
+};
+
+
+// Menu de opções
+int menu()
+{
+    int opcao;
+    bool ERRO;
+    puts("\nMenu de opcoes");
+    puts("\t0 - sair");
+    puts("\t1 - cadastrar aluno");
+    puts("\t2 - listar alunos");
+    puts("\t3 - aniversariantes do mes");
+    do{
+        printf("\n\tSua opcao: ");
+        scanf("%i", &opcao);
+        ERRO = (opcao<0) || (opcao>3);
+        if(ERRO) puts("\n\aOpcao nao prevista");
+    }while(ERRO);
+    return opcao;
+}
+
+
+
+ const int MAX = 100;
+
+// Função Principal
+int main()
+{
+    int c=0;
+
+Aluno* aluno[MAX];
+    Aluno*aluno1=new Aluno();
+    Aluno*alunos=new Aluno("eduardo",10,11,2003);
+    Data*d1=new Data();
+    Data*d2=new Data(11,10,2003);
+
+
+    int opcao;
+
+    do
+    {
+        opcao = menu();
+        switch(opcao)
+        {
+            case 0 : puts("\nObrigado!\n");
+                          break;
+            case 1 : aluno[c]=(Aluno*)malloc(sizeof(Aluno));
+                          aluno[c]->leiaAluno();
+                          c++;
+                          break;
+            case 2 :aluno[c]=(Aluno*)malloc(sizeof(Aluno));
+                          aluno[c]->listaAlunos(aluno , c);
+
+                          break;
+            case 3 :aluno[c]=(Aluno*)malloc(sizeof(Aluno));
+                    aluno[c]->listaAniversariante(aluno, c);
+
+                           break;
+
+        }
+
+
+
+
+
+    }while(opcao != 0);
+
+
+
+
+
+
+    return 0;
+}

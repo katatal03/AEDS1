@@ -1,0 +1,112 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<stdbool.h>
+
+#include<ctype.h>
+
+
+
+int main()
+{
+    int idade;
+ char genero;
+ char opcao;
+ bool erro;
+ bool erro2;
+ bool erro3;
+
+ int qntmi=0;
+ int maior=0;
+ int menor=0;
+ int qntf=0;
+ int qntm=0;
+
+int i=1;
+ printf("\n perfil de turmas\n ");
+
+ int alunos;
+ printf("\n quantos alunos tem a classe: ");
+ scanf("%i",&alunos);
+ 
+ //for(int i=1;i<=alunos;i++)
+ while(opcao!='s')//flag 
+{
+    do{
+    printf("\n aluno %i ",i);
+    printf("\n qual a sua idade: ");
+    scanf("%i",&idade);
+    erro2= idade<0 || idade>=90;
+    if(erro2)
+    {
+     printf("\n valor invalido ");
+    }
+    }while(erro2);
+
+    if(idade>=18)
+    {
+        qntmi++;
+    }
+    if(idade>maior)
+    {
+        maior=idade;
+    }
+      else if (idade<menor);
+    {
+        menor=idade;
+    }
+
+    do{
+    printf("\n qual seu genero: [m,f] ");
+    scanf(" %c",&genero);
+    genero=tolower(genero);
+    erro= genero!='m' && genero!='f';
+    if(erro)
+    {
+        printf("\n valor invalido");
+    }
+    }while(erro);
+
+    if(genero=='m')
+    {
+        qntm++;
+    } else
+    if(genero=='f')
+    {
+        qntf++;
+    }
+    i++;
+
+
+    do
+    {
+
+    printf("\n deseja sair do programa [s,n]");
+    scanf(" %c",&opcao);
+    opcao=tolower(opcao);
+    erro3= opcao!='s' && opcao!='n';
+    if (erro3)
+    {
+        printf("\n resposta invalida");
+    }
+    }while(erro3);
+
+
+}
+ int pf=qntf/(float)alunos*100;
+ int pm=qntm/(float)alunos*100;
+ int pmi=qntmi/(float)alunos*100;
+
+ printf("\n percentual de meninos e: %i",pm);
+ printf("\n percentual de meninas e: %i",pf);
+ printf("\n percentual de maiores de idade e: %i",pmi);
+ printf("\n o aluno mais velho tem %i", maior);
+ printf("\n o aluno mais novo tem %i", menor);
+
+
+
+
+
+}
+
+
+
